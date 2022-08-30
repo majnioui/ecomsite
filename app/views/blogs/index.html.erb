@@ -2,6 +2,18 @@
 
 <h1>Blogs</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label "Body" %>
+  <%= f.search_field :action_text_rich_text_body_cont %>
+  <%= f.label "Title" %>
+  <%= f.search_field :title %>
+  
+  <%= sort_link(@q, :created_at, 'latest', default_order: :desc) %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
