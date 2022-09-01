@@ -1,0 +1,14 @@
+// app/javascript/stylesheets/application.scss
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-expand-lg .navbar-nav {
+    min-width: 50%;
+}
+.flex-shrink-0 {
+    margin-left: 2%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
