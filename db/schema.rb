@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_06_000555) do
+ActiveRecord::Schema.define(version: 2022_09_06_153340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,32 @@ ActiveRecord::Schema.define(version: 2022_09_06_000555) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "orderitems", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "unit"
+    t.integer "total"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "product_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["order_id"], name: "index_orderitems_on_order_id"
+    t.index ["product_id"], name: "index_orderitems_on_product_id"
+    t.index ["user_id"], name: "index_orderitems_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total"
+    t.string "status"
+    t.date "orderdate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -115,4 +141,8 @@ ActiveRecord::Schema.define(version: 2022_09_06_000555) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "orderitems", "orders"
+  add_foreign_key "orderitems", "products"
+  add_foreign_key "orderitems", "users"
+  add_foreign_key "orders", "users"
 end

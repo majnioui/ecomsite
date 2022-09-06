@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
 
+
     @all_categories = Category.all
     categories = []
     if params.has_key?(:categories)
@@ -16,7 +17,6 @@ class ProductsController < ApplicationController
     if categories.length > 0
       q = q.where('categories.id in (?)', categories)
     end
-
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
   end
