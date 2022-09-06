@@ -6,7 +6,7 @@
             <div class="card-header"> <%= @product.title %></div>
                 <div class="card-body">
                     <a href="" data-toggle="modal" data-target="#productModal">
-                        <%= @product.title %>
+                        # Adding the picture later
                         <p class="text-center">Zoom</p>
                     </a>
                 </div>
@@ -19,9 +19,19 @@
             <div class="card bg-light mb-3">
                 <div class="card-body">
                     <p class="price"><%= @product.price %>$</p>
+                                                                <div class="form-group">
+                        <span>Category:
+                        <% if @product.has_categories? %>
+                        <% @product.categories.each do |cat| %>
+                        <span><%= link_to cat.name,  products_path({categories:[cat.id]}) %> &nbsp; </span>
+                        <% end %>
+                        <% else %>
+                        None
+                        <% end  %>
+                        </span>
+                        </div>
                     <form>
-                                              <h5>Stock: <span class="badge badge-secondary"><%= @product.stock %></span></h5>
-
+                    <h5>Stock: <span class="badge badge-secondary"><%= @product.stock %></span></h5>
                         <div class="form-group">
                             <label>Quantity :</label>
                             <div class="input-group mb-3">
