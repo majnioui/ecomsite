@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :orderitems
+  resources :orders
   resources :categories
   resources :products
   get 'users/show'

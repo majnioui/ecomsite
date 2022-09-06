@@ -17,11 +17,7 @@
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
                 <% #not sure about this %>
-                    <% @all_categories.each do |category| %>
-                    <button class="list-group-item list-group-item-action">
-  <%= link_to category.name, products_path(categories: [category.id]) %>
-                    </button>
-<% end %>
+
                 </ul>
             </div>
             <div class="card bg-light mb-3">

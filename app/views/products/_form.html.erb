@@ -20,14 +20,12 @@
                     <form>
                         <div class="field form-group">
                   <%= form.label :category %><br>
+                  
                     <%#= select(:blog, :categories, @categories.collect {|cat| [cat.name, cat.id]},  {}, multiple: true ) %>
                     <%= collection_check_boxes(:product, :categories, @categories, :id, :name) do |b|
-                      b.label { b.check_box + b.text}
-                      end
+                      b.label { b.check_box + b.text }
+                      end 
                     %>
-                  </div>
-                      <div class="field form-group">
-                    <%= form.label :new_category %><br>
                     <input type='text' name="product[new_categories]" class="form-control"  placeholder="Enter new categories here..... Separate with comma">
                   </div>
                         <div class="form-group">
