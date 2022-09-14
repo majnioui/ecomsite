@@ -1,0 +1,30 @@
+   <div id="products" class="row view-group">
+                <div class="item col-xs-4 col-lg-4">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="http://placehold.it/400x250/000/fff" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                <%= link_to product.title, product %></h4>
+                            <p class="group inner list-group-item-text">
+                                        <%= product.description %>
+                                        </p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        $ <%= product.price %></p>
+                                </div>
+                                        <%= form_with model: @order_item do |f| %>
+        <%= f.hidden_field :product_id, value: product.id %>
+        <%= f.number_field :quantity, value: 1, min: 1%>
+        <%= f.submit "Add To Cart" %>
+        <% end %>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

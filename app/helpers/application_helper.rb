@@ -1,13 +1,12 @@
 module ApplicationHelper
-    def resource_name
-        :user
+  def current_order
+    if current_user
+      exist_cart = Order.find_by(user_id: current_user.id, status: "cart")
+      if exist_cart.nil?
+        Order.new(user_id: current_user.id, status: "cart")
+      else
+        exist_cart
       end
-    
-      def resource
-        @resource ||= User.new
-      end
-    
-      def devise_mapping
-        @devise_mapping ||= Devise.mappings[:user]
-      end
+    end
+  end
 end
