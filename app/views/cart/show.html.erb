@@ -1,0 +1,7 @@
+<div id="cart-item">
+   <%= render 'cart_items'%>
+</div>
+<hr>
+
+<h1>Confirm purchase</h1>
+<%= link_to "Confirm purchase", order_items_path, method: :post, class: 'btn btn-primary' %>

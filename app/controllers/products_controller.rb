@@ -5,20 +5,18 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-
-
     @all_categories = Category.all
     categories = []
     if params.has_key?(:categories)
       categories = Category.where(id: params[:categories]).pluck(:id).to_a
     end
     q = Product.joins(:categories)
-
     if categories.length > 0
       q = q.where('categories.id in (?)', categories)
     end
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
+
   end
 
   # GET /products/1 or /products/1.json
@@ -33,6 +31,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    
   end
 
   # POST /products or /products.json
